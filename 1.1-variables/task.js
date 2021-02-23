@@ -11,20 +11,20 @@ function averageMark(a, g, p) {
 
 function sayHello(userName) {
 	let myName = userName;
-
-	let message = ("Привет, мир! Меня зовут " + userName);
-    
+	
+	let message = (`Привет, мир! Меня зовут ${userName}`);
+	
 	return message // ответ;
 }
 
 function calculateFormula() {
-    let игрек = 2;
-	let у = 22;
-	let зет = 0;
+    let x = 2;
+	let y = 22;
+	let z = 0;
 
 	// x * y + 5 * z + x - 1
 
-	let result = игрек*у+5*зет+игрек-1;
+	let result = x * y + 5 * z + x - 1;
     
     return result //  ответ;
 }
