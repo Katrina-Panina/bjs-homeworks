@@ -45,35 +45,32 @@ showSolutionsMessage(2, 4, 2);
 
 function getAverageMark(marks){
   if (marks.length > 0) {
-    return marks.reduce((partial_sum, a) => partial_sum + a, 0) / marks.length;
+    return marks.reduce((sum, cur) => sum += cur, 0) / marks.length;
   } else {
     return 0;
   }
 }
 
-
 function getAverageScore(data){
-  let averageMarks =  {
+
+  const averageMarks = {
     average: 0,
   };
 
-
- if (Object.keys(data).length === 0) {
+  if (Object.keys(data).length === 0) {
     return averageMarks;
   }
 
-  let sumMarks = 0;
-
-    for (let schoolSubject in data) {
-      averageMark[schoolSubject] = getAverageMark(data[schoolSubject]);
+  let sumOfMarks = 0;
+  for (let subject in data) {
+    averageMarks[subject] = getAverageMark(data[subject]);
+    sumOfMarks += averageMarks[subject];
   }
-  sumMarks = getAverageMark(data);
-  
-  averageMarks = sumMarks / (Object.keys(averageMarks).length - 1);
-  
+
+  averageMarks.average = sumOfMarks / (Object.keys(averageMarks).length - 1);
+
   return averageMarks;
 }
-
 
 // console.log(getAverageScore({
 //   algebra: [2, 4, 5, 2, 3, 4],
@@ -100,6 +97,7 @@ function getAverageScore(data){
 // }));
 
 // console.log(getAverageScore({}));
+
 
 
 // Задача №3 2.1 «Функции, объекты»
