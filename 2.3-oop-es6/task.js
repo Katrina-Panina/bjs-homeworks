@@ -68,7 +68,7 @@ class PrintEditionItem {
 
 class Library {
     constructor(name,books) {
-    this.name = "";
+    this.name = name;
     this.books = [];
     };
 
@@ -84,30 +84,66 @@ class Library {
 
 findBookBy(type, value){
     for (let i = 0; i < this.books.length; i++){
-        if (this.books[i][type] === value) return this.books[i];
+        if (this.books[i][type] === value) 
+        return this.books[i];
     }
     return null
  };
 
 giveBookByName(bookName){
     for (let i = 0; i < this.books.length; i++){
-        if (this.books[i].name === bookName) return this.books.splice(this.books.indexOf(this.books[1]),1);
+        if (this.books[i].name === bookName) {
+        } this.books.splice(this.books.indexOf(this.books[i].name),1)[0];
+        return bookName
 }
-return null
+         return null
 };
 
+};
+
+//Задача №3 2.3 «ООП в JS (ES6)»
+
+class StudentLog {
+    constructor(name) {
+        this.name = name;
+        this.grades = {};
+    }
+
+    getName() {
+        return this.name;
 }
 
-/*const library = new Library("Библиотека имени Ленина");
+addGrade(grade, subject) {
+    if (this.grades[subject]) {
+        this.grades[subject].push(grade);
+        return this.grades[subject].length;
+    } else if (grade < 1 || grade > 5 || typeof grade !== 'number') {
+        return `Вы пытались поставить оценку "${grade}" по предмету "${subject}". Допускаются только числа от 1 до 5.` 
+    }else {
+        this.grades[subject] = [grade];
+        return 1;
+    }
+}
+getAverageBySubject(subject) {
+    if (Object.keys(this.grades).includes(subject)) {  //если обьект grades включает в себя subject
+        let sum = 0;  
+        for (let rating of this.grades[subject]) {
+            sum += rating;
+            }
+            return sum / this.grades[subject].length;
+    } else {
+            return 0;
+      }
+    }  
+      
+getTotalAverage() {
+    let totalAverage = 0;
+    for (let element in this.grades) {
+        totalAverage += this.getAverageBySubject(element);
+      }
+      totalAverage = totalAverage / Object.keys(this.grades).length;
+      return totalAverage;
+    }  
+}
 
-library.addBook(new DetectiveBook("Артур Конан Дойл", "Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе", 2019, 1008));
-library.addBook(new FantasticBook("Аркадий и Борис Стругацкие", "Пикник на обочине", 1972, 168));
-library.addBook(new NovelBook("Герберт Уэллс", "Машина времени", 1895, 138));
-library.addBook(new Magazine("Мурзилка", 1924, 60));
 
-console.log(library.findBookBy("name", "Властелин колец")); //null
-console.log(library.findBookBy("releaseDate", 1924).name); //"Мурзилка"
-
-console.log("Количество книг до выдачи: " + library.books.length); //Количество книг до выдачи: 4
-library.giveBookByName("Машина времени");
-console.log("Количество книг после выдачи: " + library.books.length); //Количество книг после выдачи: 3
