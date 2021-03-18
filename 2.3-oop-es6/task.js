@@ -81,7 +81,6 @@ class Library {
     }
 };
 
-
 findBookBy(type, value){
     for (let i = 0; i < this.books.length; i++){
         if (this.books[i][type] === value) 
@@ -92,9 +91,10 @@ findBookBy(type, value){
 
 giveBookByName(bookName){
     for (let i = 0; i < this.books.length; i++){
-        if (this.books[i].name === bookName) {
-        } this.books.splice(this.books.indexOf(this.books[i].name),1)[0];
-        return bookName
+        const item = this.books.findIndex(book => book.name === bookName);
+        if (item != -1) 
+        return this.books.splice(item, 1)[0];
+       
 }
          return null
 };
@@ -114,11 +114,11 @@ class StudentLog {
 }
 
 addGrade(grade, subject) {
-    if (this.grades[subject]) {
+    if (grade < 1 || grade > 5 || typeof grade !== 'number') {
+        return `Вы пытались поставить оценку "${grade}" по предмету "${subject}". Допускаются только числа от 1 до 5.` 
+    } else if (this.grades[subject]) {
         this.grades[subject].push(grade);
         return this.grades[subject].length;
-    } else if (grade < 1 || grade > 5 || typeof grade !== 'number') {
-        return `Вы пытались поставить оценку "${grade}" по предмету "${subject}". Допускаются только числа от 1 до 5.` 
     }else {
         this.grades[subject] = [grade];
         return 1;
